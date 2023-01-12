@@ -8,7 +8,7 @@
 </head>
 <body>
     
-<?php
+<!-- <?php
 echo "Hello World!" ."<br>"."<hr>";
 
 $x = 23465.768;
@@ -77,13 +77,45 @@ for ($x = 0; $x <= 10; $x++) {
 
 
 
-?>
+?> -->
 
+<!-- <?php
+   
+    echo "Yesterday is " .date("d.m.Y", strtotime("yesterday")) ."<br>";
+    echo "Today is " .date("d.m.Y", strtotime("today")) ."<br>";
+    echo "Tomorrow is " .date("d.m.Y", strtotime("tomorrow")) ."<br>"."<br>";
+    
+    date_default_timezone_set("America/Detroit");
+    echo "Time is " .date("H:i:sa") ."<br>";
+?> -->
 
+    <?php
+        $name = $surname = $email = $curs = $comentariu;
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = test_input($_POST["name"]);
+            $surname = test_input($_POST["surname"]);
+            $email = test_input($_POST["email"]);
+            $curs= test_input($_POST["curs"]);
+            $comentariu= test_input($_POST["comentariu"]);
+        }
 
+            function test_input($data) {
+             $data = trim($data);
+             $data = stripslashes($data);
+             $data = htmlspecialchars($data);
+             return $data;
+        }
+    ?>
 
-
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+        Name: <input type="text" name= "name"> 
+        Surname: <input type="text" surname = "surname">
+        Email: <input type="text" email= "email">
+        Curs: <input type="text" curs="curs">
+        Comentariu: <textarea cols="50" rows= "5" comentariu= "comentariu"></textarea>
+        <input type="submit"><br><br>
+    </form>
 
 
 </body>
